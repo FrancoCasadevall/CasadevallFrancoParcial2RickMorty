@@ -12,21 +12,21 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val personaje = intent.getSerializableExtra("personaje") as? Personaje
+        val personaje = intent.getSerializableExtra("personaje") as Personaje
 
         val nombreTextView = findViewById<TextView>(R.id.nombreTextView)
         val especieTextView = findViewById<TextView>(R.id.especieTextView)
         val locationTextView = findViewById<TextView>(R.id.locationTextView)
+        val estadoTextView = findViewById<TextView>(R.id.estadoTextView)
         val imagenImageView = findViewById<ImageView>(R.id.imagenImageView)
 
-        personaje?.let {
-            nombreTextView.text = it.name
-            especieTextView.text = "Especie: ${it.species}"
-            locationTextView.text = "Ubicación: ${it.location.name}"
+        nombreTextView.text = personaje.name
+        especieTextView.text = "Especie: ${personaje.species}"
+        locationTextView.text = "Ubicación: ${personaje.location.name}"
+        estadoTextView.text = "Estado: ${personaje.status}"
 
-            Picasso.get()
-                .load(it.image)
-                .into(imagenImageView)
-        }
+        Picasso.get()
+            .load(personaje.image)
+            .into(imagenImageView)
     }
 }
